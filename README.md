@@ -1,0 +1,1 @@
+Trabalho Prático em grupo para a disciplina GCC137 - Empreendedorismo em Sistemas de Informação no curso de Sistemas de Informação da Universidade Federal de Lavras (UFLA)
