@@ -216,8 +216,6 @@ As responsabilidades vao ser em conjunto nesta primeira etapa.
 
 CENTRO PAULA SOUZA. Gestão de atendimento em microempresas de beleza: um estudo de otimização com softwares. Repositório Institucional do Conhecimento do Centro Paula Souza, 2025. Disponível em: https://ric.cps.sp.gov.br/handle/123456789/41248.
 
-CENTRO PAULA SOUZA. Plano de Negócio - Startup da Beleza. Repositório Institucional do Conhecimento do Centro Paula Souza, 2025. Disponível em: https://ric.cps.sp.gov.br/bitstream/123456789/37611/1/Plano%20de%20Neg%C3%B3cio%20-%20Startap%20da%20Beleza.pdf.
-
 FRESHA. Software de agendamento para salões. Disponível em: https://www.fresha.com/pt/for-business/features/scheduling.
 
 TRINKS. Como confirmar um agendamento online na Trinks?. Central de Ajuda. Disponível em: https://ajuda.trinks.com/como-confirmar-um-agendamento-online-central-de-ajuda-do-trinks.
