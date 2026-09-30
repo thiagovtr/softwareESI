@@ -8,7 +8,7 @@ Data: 29/09/2026
 
 **Nome da equipe/empreendimento:** Agenda Inteligente
 
-| Integrante |
+| Integrantes |
 |---|
 | Bruno Santos Vilas Boas |
 | Carolina Costa Ude |
