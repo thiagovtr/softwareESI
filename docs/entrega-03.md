@@ -95,10 +95,10 @@ O usuário principal é o cabeleireiro autônomo ou responsável por um pequeno 
 
 | Prioridade | Funcionalidades |
 |---|---|
-| **Must Have** | Configurar disponibilidade; link público; visualizar horários; formulário de reserva; impedir reserva duplicada; mostrar confirmação; visualizar reservas na agenda do profissional. |
-| **Should Have** | Cancelar reserva e liberar horário; editar serviços; personalizar dados básicos do perfil. |
-| **Could Have** | Lista de espera, lembretes automáticos, histórico de clientes e gestão de vários profissionais. |
-| **Won’t Have** | Pagamentos online, gestão financeira completa, controle de estoque, comissões, aplicativo nativo e integração automática com a API do WhatsApp. |
+| **Essenciais para o MVP** | Configurar disponibilidade; link público; visualizar horários; formulário de reserva; impedir reserva duplicada; mostrar confirmação; visualizar reservas na agenda do profissional. |
+| **Importantes, mas não essenciais** | Cancelar reserva e liberar horário; editar serviços; personalizar dados básicos do perfil. |
+| **Desejáveis** | Lista de espera, lembretes automáticos, histórico de clientes e gestão de vários profissionais. |
+| **Fora do escopo desta versão** | Pagamentos online, gestão financeira completa, controle de estoque, comissões, aplicativo nativo e integração automática com a API do WhatsApp. |
 
 O compartilhamento manual de um link pelo WhatsApp não significa que o sistema enviará mensagens automaticamente. Essa integração fica fora do MVP inicial.
 
