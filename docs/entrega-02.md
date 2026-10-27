@@ -1,10 +1,8 @@
 # Entrega 02 — Validação do Problema, Clientes e Mercado
 
 Disciplina: Empreendedorismo em Sistemas de Informação
-
-Semestre: 2026/2
-
-Data: 13/10/2026
+Semestre: 2026/2  
+Data: 13/10/2026  
 
 ## 1. Identificação do grupo
 
