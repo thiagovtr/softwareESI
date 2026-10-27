@@ -1,4 +1,4 @@
-# Trabalho de Empreendedorismo — Entrega 3
+# Entrega 03 - Proposta de valor, modelo de negócio e definição do MVP
 
 Disciplina: Empreendedorismo em Sistemas de Informação  
 Semestre: 2026/2  
