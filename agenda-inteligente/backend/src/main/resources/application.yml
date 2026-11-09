@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: agenda-inteligente
+  datasource:
+    url: ${BANCO_URL:jdbc:postgresql://localhost:5432/agenda_inteligente}
+    username: ${BANCO_USUARIO:agenda}
+    password: ${BANCO_SENHA:agenda}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+server:
+  port: ${PORTA_API:8080}
+profissional:
+  usuario: ${USUARIO_PROFISSIONAL:profissional}
+  senha: ${SENHA_PROFISSIONAL:agenda123}
+cors:
+  origem: ${ORIGEM_FRONTEND:http://localhost:5173}

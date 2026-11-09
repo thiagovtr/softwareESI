@@ -1,0 +1,4 @@
+const URL_API = import.meta.env.VITE_URL_API || 'http://localhost:8080'
+const extrairErro = async (resposta) => { const corpo = await resposta.json().catch(() => ({})); throw new Error(corpo.mensagem || 'Nao foi possivel concluir a operacao.') }
+export async function publico(caminho, opcoes = {}) { const { headers: cabecalhos = {}, ...demaisOpcoes } = opcoes; const resposta = await fetch(`${URL_API}${caminho}`, { ...demaisOpcoes, headers: { ...cabecalhos, ...(demaisOpcoes.body !== undefined ? { 'Content-Type': 'application/json' } : {}) } }); if (!resposta.ok) await extrairErro(resposta); return resposta.status === 204 ? null : resposta.json() }
+export async function profissional(caminho, senha, opcoes = {}) { const token = btoa(`profissional:${senha}`); return publico(caminho, { ...opcoes, headers: { Authorization: `Basic ${token}`, ...opcoes.headers } }) }
