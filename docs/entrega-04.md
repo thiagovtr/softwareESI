@@ -108,31 +108,31 @@ As imagens abaixo são capturas de tela, referentes ao uso local do frontend. El
 
 ### 8.1. Tela de acesso do profissional
 
-![Tela de acesso da área do profissional](../../evidencias/entrega-04/prints/01-acesso-profissional.jpeg)
+![Tela de acesso da área do profissional](../docs/evidencias/prints/01-acesso-profissional.jpeg)
 
 **Figura 1 —** Tela inicial da área do profissional, com campo de senha e botão de entrada. A captura confirma que o frontend foi servido localmente.
 
 ### 8.2. Painel do profissional sem agendamento
 
-![Painel do profissional sem agendamento](../../evidencias/entrega-04/prints/02-painel-profissional-sem-agendamento.jpeg)
+![Painel do profissional sem agendamento](../docs/evidencias/prints/02-painel-profissional-sem-agendamento.jpeg)
 
 **Figura 2 —** Painel administrativo com o link público, serviços cadastrados, disponibilidade configurada e agenda sem compromisso na data selecionada.
 
 ### 8.3. Painel do profissional com agendamento
 
-![Painel do profissional com agendamento](../../evidencias/entrega-04/prints/03-painel-profissional-com-agendamento.jpeg)
+![Painel do profissional com agendamento](../docs/evidencias/prints/03-painel-profissional-com-agendamento.jpeg)
 
 **Figura 3 —** Painel administrativo exibindo um compromisso registrado na agenda, com serviço, horário, nome e contato do cliente.
 
 ### 8.4. Tela pública de escolha de serviço e horário
 
-![Escolha de serviço e horário](../../evidencias/entrega-04/prints/04-escolha-servico-horario.jpeg)
+![Escolha de serviço e horário](../docs/evidencias/prints/04-escolha-servico-horario.jpeg)
 
 **Figura 4 —** Tela pública em que o cliente seleciona o serviço, a data e um dos horários disponíveis, além de informar nome e contato.
 
 ### 8.5. Confirmação do agendamento
 
-![Confirmação do agendamento](../../evidencias/entrega-04/prints/05-confirmacao-agendamento.jpeg)
+![Confirmação do agendamento](../docs/evidencias/prints/05-confirmacao-agendamento.jpeg)
 
 **Figura 5 —** Tela apresentada após a reserva, com a indicação de confirmação, o serviço e a data e horário registrados.
 
