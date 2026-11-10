@@ -146,13 +146,18 @@ Cabeleireiros e profissionais de beleza autônomos (solo) ou pequenos salões (a
 * Limitações: Curva de aprendizado alta; pouca flexibilidade de encaixe rápido.
 * Oportunidade percebida: Foco exclusivo em velocidade e resolução de agendamento no WhatsApp.
 
-**9.3. Avec (Linx)**
+**9.3. Concorrentes locais em Lavras (MG)**
 
-* Público: Redes e salões grandes.
-* Modelo de receita/preço: Mensalidade + taxas.
-* Pontos fortes: Robusto, multifilial.
-* Limitações: Caro e inviável para o autônomo solo.
-* Oportunidade percebida: Modelo leve e acessível.
+Para aproximar a análise do mercado atendido pelo projeto, foram consultados estabelecimentos de beleza listados publicamente no Centro de Lavras:
+
+| Estabelecimento | Localização publicada | Serviços publicados | Oportunidade para o Agenda Inteligente |
+|---|---|---|---|
+| Salão Eloin | Rua Doutor Álvaro Botelho, 310, Centro | Corte, lavagem e escova | Oferecer um link simples para organizar a procura por horários. |
+| Salão Cia da Beleza Mila | Rua Chagas Dória, 29, sala 26, Centro | Corte, lavagem e escova | Reduzir a troca de mensagens para confirmar disponibilidade. |
+| Salão Gi e Cia | Rua Chagas Dória, 380, Centro | Corte, lavagem e escova | Centralizar reservas e diminuir conflitos de agenda. |
+| Helena Cabelo e Moda | Rua Misseno Pádua, 589, sala 104, Centro | Corte, lavagem e escova | Facilitar o agendamento pelo celular sem exigir aplicativo. |
+
+Os nomes, endereços e serviços acima foram consultados no diretório público ListaTudo, na categoria “Cabeleireiros e Institutos de Beleza” de Centro de Lavras. O diretório não informa preços nem confirma o sistema de agendamento utilizado por cada estabelecimento; por isso, esses dados não foram estimados. Fonte: [ListaTudo — Cabeleireiros e Institutos de Beleza em Centro de Lavras](https://listatudo.com.br/centro-lavras/cabeleireiros-e-institutos-de-beleza-profissionais/).
 
 **9.4. Appointy / Calendly**
 

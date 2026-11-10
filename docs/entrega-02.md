@@ -146,15 +146,7 @@ Cabeleireiros e profissionais de beleza autônomos (solo) ou pequenos salões (a
 * Limitações: Curva de aprendizado alta; pouca flexibilidade de encaixe rápido.
 * Oportunidade percebida: Foco exclusivo em velocidade e resolução de agendamento no WhatsApp.
 
-**9.3. Avec (Linx)**
-
-* Público: Redes e salões grandes.
-* Modelo de receita/preço: Mensalidade + taxas.
-* Pontos fortes: Robusto, multifilial.
-* Limitações: Caro e inviável para o autônomo solo.
-* Oportunidade percebida: Modelo leve e acessível.
-
-**9.4. Appointy / Calendly**
+**9.3. Appointy / Calendly**
 
 * Público: Profissionais em geral.
 * Modelo de receita/preço: Freemium / Valor em dólar.
@@ -162,7 +154,7 @@ Cabeleireiros e profissionais de beleza autônomos (solo) ou pequenos salões (a
 * Limitações: Não focado na dinâmica/especificidades de salões de beleza.
 * Oportunidade percebida: Linguagem e recursos voltados a procedimentos de beleza (tempo de pausa, tintura, etc.).
 
-**9.5. WhatsApp / Papel**
+**9.4. WhatsApp / Papel**
 
 * Público: Autônomos em geral.
 * Modelo de receita/preço: Gratuito.

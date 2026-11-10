@@ -153,24 +153,17 @@ O roteiro segue o Anexo C do trabalho:
 5. Evitar interferência, salvo quando necessária.
 6. Ao final, perguntar: o que entendeu que o sistema faz; o que foi fácil; o que foi difícil; em que situação usaria; o que faltou; o que deveria ser removido; e qual foi a parte mais valiosa.
 
-### 9.3. Modelo de registro para preenchimento
+### 9.3. Registros dos participantes
 
-| Campo | Registro |
-|---|---|
-| Código anônimo | P__ |
-| Perfil | Cabeleireiro autônomo, responsável por pequeno salão ou cliente que agenda por mensagens |
-| Objetivo | Verificar se consegue configurar a agenda ou concluir uma reserva sem ajuda |
-| Tarefa | Profissional: cadastrar serviço, disponibilidade e localizar uma reserva. Cliente: abrir o link, escolher serviço/data/horário, informar dados e confirmar. |
-| Conclusão sem ajuda | A preencher |
-| Tempo aproximado | A preencher |
-| Observações | A preencher |
-| Dificuldades | A preencher |
-| Comentários | A preencher |
-| Percepção de valor | A preencher |
-| Sugestões | A preencher |
-| Decisão do grupo | A preencher: manter, corrigir, remover ou investigar |
+Os participantes abaixo foram selecionados com base nas entrevistas realizadas na Entrega 2. As informações apresentadas na coluna de evidências correspondem às entrevistas anteriores, não a observações comprovadas durante o uso do MVP. Os resultados específicos dos testes de software deverão ser registrados após sua realização.
 
-Esse modelo deve ser preenchido separadamente para pelo menos cinco participantes, sempre que viável, sem completar campos por suposição.
+| Código | Perfil registrado | Tarefa proposta para o teste | Evidências e pontos de atenção identificados anteriormente | Decisão provisória do grupo |
+|---|---|---|---|---|
+| P1 | Cabeleireiro autônomo, Studio Hair, 8 anos de atuação | Cadastrar um serviço, configurar horários disponíveis, copiar o link e verificar uma reserva. | Na entrevista anterior, relatou utilizar caderno e WhatsApp, receber muitas mensagens sobre horários e ter dificuldade para preencher vagas de última hora. É importante observar se consegue configurar a agenda sem dificuldades. | Priorizar simplicidade, facilidade de uso e compartilhamento do link. |
+| P2 | Proprietária de pequeno salão com três cadeiras | Configurar a disponibilidade e consultar os agendamentos realizados. | Relatou conflitos de horários causados pela atualização manual de uma planilha compartilhada. É importante verificar se o sistema impede reservas sobrepostas. | Avaliar a necessidade de suporte a múltiplos profissionais em versões futuras. |
+| P3 | Cabeleireiro autônomo com atendimentos em domicílio e estúdio | Acessar o link pelo celular, selecionar um serviço e solicitar um horário. | Relatou dificuldades para responder mensagens durante os atendimentos e interesse em uma ferramenta simples acessível pelo celular. | Priorizar uma experiência móvel simples e com poucas etapas. |
+| P4 | Barbeiro/cabeleireiro, dois anos de atuação | Realizar uma reserva e verificar se o horário aparece corretamente na agenda profissional. | Relatou conflitos entre agendamentos recebidos pelo aplicativo e pelo WhatsApp. É importante verificar a atualização da disponibilidade e o bloqueio de horários ocupados. | Reforçar a prevenção de conflitos e a centralização dos agendamentos. |
+| P5 | Proprietária de salão com quatro funcionárias | Configurar a agenda e consultar um agendamento realizado por um cliente. | Relatou que, mesmo utilizando respostas automáticas no WhatsApp Business, a recepcionista ainda precisava verificar e confirmar horários manualmente. | Investigar a necessidade de recursos para equipes e recepção, considerando que o MVP possui escopo reduzido. |
 
 ## 10. Resultados e métricas
 
