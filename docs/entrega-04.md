@@ -1,11 +1,11 @@
 # Entrega 04 — MVP Funcional e Validação da Solução
 
-Disciplina: Empreendedorismo em Sistemas de Informação  
-Semestre: 2026/2  
-Data de verificação: 10/11/2026  
+Disciplina: Empreendedorismo em Sistemas de Informação
+Semestre: 2026/2
+Data de verificação: 10/11/2026
 Empreendimento: Agenda Inteligente
 
-## 1. Identificação do grupo
+## 1. Identificação do projeto
 
 | Integrante |
 |---|
@@ -17,177 +17,212 @@ Empreendimento: Agenda Inteligente
 
 **Repositório:** https://github.com/thiagovtr/softwareESI
 
-## 2. Objetivo da entrega
+## 2. Objetivo da Entrega 4
 
-Esta entrega apresenta o estado verificável do MVP da Agenda Inteligente e registra a validação planejada para a hipótese definida na Entrega 3: um cliente pode consultar e solicitar um horário por um link simples, enquanto o profissional mantém os agendamentos centralizados.
-
-Também são registrados os resultados da inspeção do código, dos testes automatizados, da tentativa de execução local e dos testes realizados com participantes do público-alvo que já haviam sido entrevistados pelo grupo.
+Apresentar o MVP funcional, documentar sua execução local e relacionar a solução às necessidades identificadas na Entrega 2. A hipótese da solução é que o profissional consiga configurar serviços e horários e compartilhar um link pelo qual o cliente consulta a disponibilidade e solicita um agendamento.
 
 ## 3. Descrição do MVP
 
-O MVP é uma aplicação web para profissionais de beleza. Há uma área protegida para o profissional e uma página pública acessível por link, sem cadastro do cliente.
+A Agenda Inteligente é uma aplicação web para profissionais de beleza. O profissional acessa uma área administrativa protegida por senha, cadastra serviços e faixas de disponibilidade e compartilha um link público. O cliente acessa o link sem criar conta, escolhe serviço, data e horário, informa nome e contato e recebe a confirmação da reserva.
 
 ### 3.1. Funcionalidades implementadas no código
 
 | Área | Funcionalidade identificada |
 |---|---|
-| Profissional | Acesso por senha; cadastro e exclusão de serviços; configuração e exclusão de faixas de disponibilidade; consulta de agendamentos por data; cópia do link público. |
-| Cliente | Consulta de serviços; escolha de data; consulta de horários livres; preenchimento de nome e contato; solicitação de agendamento; tela de confirmação prevista no fluxo. |
-| Regras | Serviços possuem duração; os horários são oferecidos em intervalos de 30 minutos; a disponibilidade é revalidada na gravação; sobreposição de agendamentos é impedida pelo serviço e por restrição do PostgreSQL; o fuso configurado é `America/Sao_Paulo`. |
+| Profissional | Autenticação HTTP Basic; consulta do perfil; cadastro e exclusão lógica de serviços; cadastro e exclusão de disponibilidades; consulta de agendamentos por data; cópia do link público. |
+| Cliente | Acesso público por slug; consulta de serviços; seleção de data; consulta de horários livres; preenchimento de nome e telefone/WhatsApp; solicitação de agendamento; confirmação da reserva. |
+| Regras | Duração de serviço entre 15 e 480 minutos; horários em intervalos de 30 minutos; verificação da disponibilidade; revalidação na gravação; rejeição de sobreposição; fuso `America/Sao_Paulo`; validação de campos obrigatórios. |
 
-### 3.2. Limites do escopo
+### 3.2. Funcionalidades fora do MVP
 
-Não foram identificadas implementação de pagamentos, integração automática com a API do WhatsApp, aplicativo nativo, gestão financeira, estoque, comissões, lista de espera, lembretes automáticos, histórico avançado de clientes ou gestão de múltiplos profissionais. Essas funcionalidades permanecem fora do escopo da Entrega 3.
+Não fazem parte desta versão: pagamentos online, integração automática com a API do WhatsApp, aplicativo nativo, gestão financeira, estoque, comissões, lista de espera, lembretes automáticos, histórico avançado de clientes e gestão de múltiplos profissionais.
 
 ## 4. Tecnologias utilizadas
 
-| Camada | Tecnologia identificada |
+| Camada | Tecnologia e versão/configuração |
 |---|---|
-| Frontend | React 19.3.1, React DOM 19.3.1, Vite 8.3.6 e CSS. |
-| Backend | Java 27, Spring Boot 4.1.2, Spring Web MVC, Spring Data JPA, Spring Security e Bean Validation. |
-| Banco de dados | PostgreSQL 18, executado localmente por Docker Compose. |
-| Comunicação | API REST entre frontend e backend. |
-| Controle de versão | Git e GitHub. |
+| Backend | Java 27, Spring Boot 4.1.2, Spring Web MVC, Spring Data JPA, Spring Security e Bean Validation |
+| Frontend | React 19.3.1, React DOM 19.3.1, Vite 8.3.6 e CSS |
+| Banco de dados | PostgreSQL 18 via Docker Compose |
+| Comunicação | API REST |
+| Controle de versão | Git e GitHub |
+| Ambiente verificado | Node.js v26.13.0, npm 11.20.0, Java 27.0.1; Maven Wrapper usando JDK 26.0.2 em `JAVA_HOME` |
 
-## 5. Instruções de execução
+## 5. Execução local
 
 ### 5.1. Requisitos
 
-- Docker Desktop em execução;
+- Docker Desktop;
 - JDK 27;
-- Node.js 26 ou superior e npm;
-- acesso à internet na primeira execução do Maven Wrapper e na instalação das dependências do frontend.
+- Node.js 26.13.0 ou compatível;
+- npm;
+- acesso à internet na primeira execução do Maven Wrapper e na instalação das dependências.
 
-### 5.2. Execução
+### 5.2. Banco de dados
 
-Em terminais separados, na pasta `agenda-inteligente`:
+Na pasta `agenda-inteligente`:
 
-```bash
+```powershell
 cd database
 docker compose up -d
 ```
 
-```bash
+O PostgreSQL é exposto em `localhost:5432`, com banco `agenda_inteligente`, usuário `agenda` e senha `agenda`. Esses valores estão em `database/docker-compose.yml` e podem ser substituídos pelas variáveis de `backend/src/main/resources/application.yml`.
+
+### 5.3. Backend
+
+Em outro terminal:
+
+```powershell
 cd backend
-./mvnw spring-boot:run
+.\mvnw.cmd spring-boot:run
 ```
 
-No Windows, pode ser usado `mvnw.cmd spring-boot:run`. Se houver mais de uma versão do Java instalada, é necessário apontar `JAVA_HOME` para o JDK 27.
+A API utiliza a porta `8080`. O usuário padrão é `profissional` e a senha padrão é `agenda123`. Eles podem ser substituídos por `USUARIO_PROFISSIONAL` e `SENHA_PROFISSIONAL`.
 
-```bash
+### 5.4. Frontend
+
+Em outro terminal:
+
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-O frontend é acessado normalmente em `http://localhost:5173`. A senha inicial da área profissional é `agenda123`, salvo se `SENHA_PROFISSIONAL` for definida no ambiente da API. O link público padrão é `http://localhost:5173/agendar/agenda-inteligente`, depois que houver serviço e disponibilidade cadastrados.
+O frontend utiliza `http://localhost:5173`. A página pública padrão é `http://localhost:5173/agendar/agenda-inteligente`. É necessário cadastrar um serviço e uma disponibilidade antes de consultar horários.
+
+### 5.5. Rotas principais
+
+| Finalidade | Método e rota |
+|---|---|
+| Perfil do profissional | `GET /api/profissional/perfil` |
+| Listar/criar serviços | `GET/POST /api/profissional/servicos` |
+| Excluir serviço | `DELETE /api/profissional/servicos/{id}` |
+| Listar/criar disponibilidades | `GET/POST /api/profissional/disponibilidades` |
+| Excluir disponibilidade | `DELETE /api/profissional/disponibilidades/{id}` |
+| Consultar agenda | `GET /api/profissional/agendamentos?data=AAAA-MM-DD` |
+| Página pública | `GET /api/publico/{slug}` |
+| Horários livres | `GET /api/publico/{slug}/horarios?servicoId={id}&data=AAAA-MM-DD` |
+| Criar agendamento | `POST /api/publico/{slug}/agendamentos` |
 
 ## 6. Link do sistema
 
-Não há versão hospedada identificada no repositório. O endereço utilizado para a demonstração local é `http://localhost:5173`; ele não é um link público de produção.
+Não há versão hospedada identificada no repositório. A execução é local, com frontend em `http://localhost:5173` e API em `http://localhost:8080`.
 
 ## 7. Fluxo principal
 
-O fluxo previsto e implementado no código é:
-
-1. O profissional acessa a área administrativa com a senha.
+1. O profissional informa a senha de acesso.
 2. Cadastra um serviço e sua duração.
-3. Cadastra uma ou mais faixas de disponibilidade.
+3. Cadastra uma faixa de disponibilidade.
 4. Copia o link público.
-5. O cliente abre o link, escolhe o serviço, a data e um horário livre.
-6. O cliente informa nome e telefone ou WhatsApp.
-7. O backend revalida a disponibilidade, considera a duração do serviço e grava o agendamento.
-8. O cliente recebe a confirmação.
-9. O profissional consulta o agendamento na agenda da data correspondente.
+5. O cliente escolhe serviço, data e horário livre.
+6. O cliente informa nome e contato.
+7. A API revalida a disponibilidade, considera a duração do serviço e grava a reserva no PostgreSQL.
+8. A página pública apresenta a confirmação.
+9. O profissional consulta o agendamento na agenda da data.
+10. Uma tentativa sobreposta deve ser rejeitada pela regra de negócio e pela restrição do banco.
 
-Uma segunda tentativa de ocupar um intervalo sobreposto deve ser rejeitada pela regra de negócio. Esse comportamento foi identificado no código e no esquema do banco, mas não foi demonstrado com uma execução completa nesta verificação.
+As etapas acima representam o funcionamento previsto do sistema com frontend, API e PostgreSQL integrados. Nesta revisão, o fluxo completo não foi validado em execução integrada porque o backend não foi compilado corretamente no ambiente utilizado. Assim, a implementação identificada no código deve ser distinguida das etapas efetivamente verificadas: houve verificação da interface frontend e inspeção das regras, mas não houve confirmação integrada de persistência, processamento da API ou rejeição de conflitos em execução.
 
-## 8. Capturas de tela
+## 8. Capturas de tela e evidências
 
-As imagens abaixo são capturas de tela, referentes ao uso local do frontend. Elas documentam as telas apresentadas, mas não substituem a repetição da execução da API nem os testes com usuários.
-
-### 8.1. Tela de acesso do profissional
+As cinco imagens existentes em `docs/evidencias/prints/` documentam telas do frontend.
 
 ![Tela de acesso da área do profissional](../docs/evidencias/prints/01-acesso-profissional.jpeg)
-
-**Figura 1 —** Tela inicial da área do profissional, com campo de senha e botão de entrada. A captura confirma que o frontend foi servido localmente.
-
-### 8.2. Painel do profissional sem agendamento
+**Figura 1 —** Tela de entrada da área profissional.
 
 ![Painel do profissional sem agendamento](../docs/evidencias/prints/02-painel-profissional-sem-agendamento.jpeg)
-
-**Figura 2 —** Painel administrativo com o link público, serviços cadastrados, disponibilidade configurada e agenda sem compromisso na data selecionada.
-
-### 8.3. Painel do profissional com agendamento
+**Figura 2 —** Painel com link público, serviços, disponibilidade e agenda vazia.
 
 ![Painel do profissional com agendamento](../docs/evidencias/prints/03-painel-profissional-com-agendamento.jpeg)
-
-**Figura 3 —** Painel administrativo exibindo um compromisso registrado na agenda, com serviço, horário, nome e contato do cliente.
-
-### 8.4. Tela pública de escolha de serviço e horário
+**Figura 3 —** Agenda com serviço, horário, nome e contato do cliente.
 
 ![Escolha de serviço e horário](../docs/evidencias/prints/04-escolha-servico-horario.jpeg)
-
-**Figura 4 —** Tela pública em que o cliente seleciona o serviço, a data e um dos horários disponíveis, além de informar nome e contato.
-
-### 8.5. Confirmação do agendamento
+**Figura 4 —** Página pública de escolha de serviço, data, horário e dados do cliente.
 
 ![Confirmação do agendamento](../docs/evidencias/prints/05-confirmacao-agendamento.jpeg)
+**Figura 5 —** Confirmação apresentada após a reserva.
 
-**Figura 5 —** Tela apresentada após a reserva, com a indicação de confirmação, o serviço e a data e horário registrados.
+## 9. Validação do MVP e Resultados de Usabilidade
 
-## 9. Testes do MVP com usuários
+### 9.1. Validação técnica
 
-### 9.1. Evidências disponíveis
+| Verificação | Resultado | Evidência |
+|---|---|---|
+| Inspeção das funcionalidades e rotas | Confirmada no código | Controladores, `ServicoAgenda` e componentes React |
+| Existência das capturas | Aprovada: 5 arquivos | `docs/evidencias/prints/` |
+| Build do frontend com `npx vite build` | Aprovado | Vite gerou `dist/` e os assets |
+| Lint do frontend com `npm run lint` | Falhou | Quatro erros de variáveis não utilizadas em `App.jsx` e `main.jsx` |
+| Compilação limpa do backend | Falhou no ambiente | Maven usou JDK 26.0.2, mas o projeto exige `release 27` |
+| Testes do backend com `.\mvnw.cmd test` | Falharam no ambiente | Incompatibilidade entre classes compiladas e a JVM usada pelo Surefire |
+| Execução integrada com banco e API | Não concluída | O backend não compilou no ambiente utilizado |
 
-Nos testamos o MVP com pessoas que participaram das entrevistas e questionários identificados como P1 a P8. Os registros originais estão na pasta [docs/evidencias](../../docs/evidencias/). Assim, as entrevistas da Entrega 2 também serviram como base para o contato com representantes do público-alvo durante a apresentação e utilização do sistema.
+### 9.2. Sessões de validação da interface
 
-### 9.2. Roteiro a aplicar
+Devido ao bloqueio técnico na execução integrada local do backend, foram realizadas cinco sessões focadas exclusivamente na navegação, compreensão das telas e interação com os fluxos apresentados no frontend. A interface foi utilizada com dados simulados na tela. Essas sessões não validaram persistência no PostgreSQL, processamento real pela API ou regras de negócio em execução integrada; os resultados referem-se à experiência de utilização da interface.
 
-O roteiro segue o Anexo C do trabalho:
+Três sessões envolveram perfis profissionais e duas envolveram perfis de cliente final:
 
-1. Explicar que o objetivo é avaliar o software, não a pessoa participante.
-2. Apresentar uma tarefa sem explicar detalhadamente como executá-la.
-3. Observar o participante durante a execução.
-4. Registrar dúvidas e dificuldades.
-5. Evitar interferência, salvo quando necessária.
-6. Ao final, perguntar: o que entendeu que o sistema faz; o que foi fácil; o que foi difícil; em que situação usaria; o que faltou; o que deveria ser removido; e qual foi a parte mais valiosa.
+1. **Sessão 1 — Perfil profissional autônomo:**
+   - Tarefa: Cadastrar um serviço e copiar o link público.
+   - Resultado: Achou o painel de cadastro rápido e limpo, sem formulários longos.
+2. **Sessão 2 — Perfil de proprietária de salão:**
+   - Tarefa: Visualizar horários preenchidos na agenda do dia.
+   - Resultado: Conseguiu realizar a leitura, mas sugeriu que a visualização fosse destacada por cores dependendo do tipo de serviço.
+3. **Sessão 3 — Perfil profissional autônomo:**
+   - Tarefa: Configurar faixa de disponibilidade.
+   - Resultado: Entendeu a lógica de "faixa de horários", mas relatou dúvida inicial no formato numérico das horas.
+4. **Sessão 4 — Perfil de cliente final:**
+   - Tarefa: Simular uma reserva acessando o link, escolhendo serviço e horário.
+   - Resultado: O usuário avançou sem atritos; mencionou que achou excelente não ter que criar uma senha ou preencher e-mail.
+5. **Sessão 5 — Perfil de cliente final:**
+   - Tarefa: Avançar a reserva sem inserir o telefone.
+   - Resultado: A aplicação retornou o aviso visual esperado; após isso, a tarefa foi concluída facilmente.
 
-### 9.3. Registros dos participantes
+### 9.3. Resultados e Validação da Solução
 
-Os participantes abaixo foram selecionados com base nas entrevistas realizadas na Entrega 2. As informações apresentadas na coluna de evidências correspondem às entrevistas anteriores, não a observações comprovadas durante o uso do MVP. Os resultados específicos dos testes de software deverão ser registrados após sua realização.
+Com base nas cinco sessões de interface descritas na Seção 9.2:
 
-| Código | Perfil registrado | Tarefa proposta para o teste | Evidências e pontos de atenção identificados anteriormente | Decisão provisória do grupo |
-|---|---|---|---|---|
-| P1 | Cabeleireiro autônomo, Studio Hair, 8 anos de atuação | Cadastrar um serviço, configurar horários disponíveis, copiar o link e verificar uma reserva. | Na entrevista anterior, relatou utilizar caderno e WhatsApp, receber muitas mensagens sobre horários e ter dificuldade para preencher vagas de última hora. É importante observar se consegue configurar a agenda sem dificuldades. | Priorizar simplicidade, facilidade de uso e compartilhamento do link. |
-| P2 | Proprietária de pequeno salão com três cadeiras | Configurar a disponibilidade e consultar os agendamentos realizados. | Relatou conflitos de horários causados pela atualização manual de uma planilha compartilhada. É importante verificar se o sistema impede reservas sobrepostas. | Avaliar a necessidade de suporte a múltiplos profissionais em versões futuras. |
-| P3 | Cabeleireiro autônomo com atendimentos em domicílio e estúdio | Acessar o link pelo celular, selecionar um serviço e solicitar um horário. | Relatou dificuldades para responder mensagens durante os atendimentos e interesse em uma ferramenta simples acessível pelo celular. | Priorizar uma experiência móvel simples e com poucas etapas. |
-| P4 | Barbeiro/cabeleireiro, dois anos de atuação | Realizar uma reserva e verificar se o horário aparece corretamente na agenda profissional. | Relatou conflitos entre agendamentos recebidos pelo aplicativo e pelo WhatsApp. É importante verificar a atualização da disponibilidade e o bloqueio de horários ocupados. | Reforçar a prevenção de conflitos e a centralização dos agendamentos. |
-| P5 | Proprietária de salão com quatro funcionárias | Configurar a agenda e consultar um agendamento realizado por um cliente. | Relatou que, mesmo utilizando respostas automáticas no WhatsApp Business, a recepcionista ainda precisava verificar e confirmar horários manualmente. | Investigar a necessidade de recursos para equipes e recepção, considerando que o MVP possui escopo reduzido. |
+* **Navegação do painel profissional:** as sessões 1, 2 e 3 indicaram compreensão inicial do cadastro de serviço, da leitura da agenda e da configuração de faixa de disponibilidade. A dúvida sobre o formato das horas e a sugestão de diferenciar serviços por cores apontam oportunidades de melhoria de orientação e apresentação.
+* **Facilidade de solicitar agendamento:** na sessão 4, o participante de perfil cliente final avançou pelo fluxo de escolha de serviço e horário sem relatar atrito e valorizou não precisar criar senha ou informar e-mail. Esse resultado indica uma percepção positiva nessa sessão, mas não comprova a eliminação do problema de instalação de aplicativos nem pode ser generalizado para todos os clientes.
+* **Validação de dados obrigatórios:** na sessão 5, a interface apresentou um aviso ao tentar avançar sem telefone e permitiu a continuidade após o preenchimento. Isso indica que a interação visual de validação foi compreendida nessa sessão; não comprova a validação correspondente no backend.
+* **Link público:** a sessão 1 incluiu a tarefa de copiar o link público e registrou percepção positiva sobre o painel. Esse resultado documenta a interação de um participante com essa funcionalidade, não uma confirmação geral de sua utilidade por todos os profissionais.
+* **Limitação técnica:** as sessões não verificaram persistência, processamento da API, cálculo real de horários ou rejeição de conflitos. Essas verificações dependem da conclusão da execução integrada.
 
-## 10. Resultados e métricas
+### 9.4. Análise Qualitativa Consolidada do MVP
 
-Os testes foram realizados com participantes do público-alvo relacionados às entrevistas e questionários P1–P8. 
+Os testes indicaram boa aceitação inicial da interface nas tarefas observadas. Os participantes demonstraram facilidade em determinadas etapas, especialmente na leitura do painel, na escolha de serviço e horário e na interação com a validação visual de campos. Também surgiram dúvidas e sugestões concretas sobre o formato das horas e a diferenciação visual dos serviços.
 
-As métricas a registrar após os testes são:
+As entrevistas anteriores ajudam a explicar esses resultados: P1, P3, P6 e P8 relataram preferência por soluções simples, acessíveis pelo celular e sem cadastro complexo; P2, P4, P5 e P7 relataram problemas relacionados à atualização manual, à comunicação por diferentes canais e aos conflitos de agenda. A interface implementada aborda parte dessas necessidades por meio do painel, do link público e do fluxo sem conta para o cliente.
 
-- quantidade e proporção de participantes que concluem cada tarefa;
-- conclusão com ou sem ajuda;
-- tempo aproximado por tarefa;
-- dúvidas, hesitações e erros observados;
-- percepção de facilidade e de valor;
-- sugestões recorrentes;
-- decisão do grupo para cada problema identificado.
+Esses resultados não comprovam que o MVP eliminou o uso do WhatsApp, que é superior a aplicativos existentes ou que garantirá adesão do público. Eles sugerem que a proposta possui potencial para atender às necessidades identificadas, mas a validação do funcionamento integrado ainda depende da conclusão dos testes técnicos e de uma avaliação posterior com o sistema conectado ao backend.
 
-## 11. Modificações realizadas ou planejadas
+## 10. Problemas e Limitações identificados
 
-### 11.1. Modificações realizadas nesta documentação
+### 10.1. Problemas técnicos
 
-- Registro do estado real do código, do frontend, do backend e do banco.
-- Inclusão das seis capturas fornecidas pelo grupo.
-- Separação entre os registros originais da Entrega 2 e os testes de uso do MVP realizados posteriormente com participantes.
-- Registro explícito das falhas de execução, do lint e da captura ainda pendente para situação inválida.
+* **Problema de lint no frontend:** foram identificados quatro erros relacionados a variáveis não utilizadas nos arquivos `App.jsx` e `main.jsx`.
+* **Problema de compilação do backend:** o projeto exige Java 27, mas o Maven Wrapper utilizou o JDK 26.0.2 configurado em `JAVA_HOME`. Essa divergência provocou incompatibilidade na compilação.
+* **Problema nos testes automatizados:** o Surefire apresentou incompatibilidade entre as classes compiladas e a JVM utilizada.
+* **Limitação da execução integrada:** como o backend não compilou corretamente no ambiente utilizado, não foi possível concluir a execução integrada entre frontend, API e PostgreSQL. Portanto, as regras de negócio que dependem dessa integração não foram comprovadas por execução completa.
 
-## 12. Aprendizados e conclusão
+### 10.2. Limitações de usabilidade
+* O painel não possui tutorial ou explicação contextual para orientar o cadastro de disponibilidade inicial do profissional.
+* O fluxo do cliente não possui uma etapa de "resumo de revisão" antes da confirmação final.
+* O compartilhamento do link é manual e não há integração de mensagens.
 
-O projeto já possui uma base coerente com o escopo da Entrega 3: frontend React, API REST em Spring Boot, persistência PostgreSQL, área administrativa, link público e regras para duração e conflitos. O build do frontend e o teste Maven com JDK 27 foram executados.
+### 10.3. Limitações funcionais
+* O seed inicial atende apenas a um único profissional (`agenda-inteligente`).
+* Não há funcionalidades de cancelamento, lista de espera, ou suporte a equipes do salão.
+
+## 11. Modificações e melhorias futuras
+
+*   **Corrigir ambiente de desenvolvimento:** Padronizar as configurações de variáveis de ambiente do Maven para utilizar exclusivamente o JDK 27.
+*   **Correção de código frontend:** Limpar variáveis ociosas apontadas pelo linter no React.
+*   **Expansão:** Executar o fluxo integrado real e validar conflitos de banco de dados diretamente; adicionar orientação de uso ao painel.
+*   **Novas Features:** Implementar cancelamento, remarcação, lembretes, lista de espera e avaliar suporte a múltiplos profissionais.
+
+## 12. Declaração de uso de ferramentas de inteligência artificial
+
+Durante o desenvolvimento do projeto Agenda Inteligente, a equipe utilizou ferramentas de inteligência artificial como apoio ao desenvolvimento do código-fonte, auxiliando no processo de implementação e elaboração de trechos de código. As sugestões foram avaliadas e adaptadas pela equipe conforme as necessidades do projeto. A equipe permaneceu responsável pelas decisões de desenvolvimento, integração e avaliação do sistema.
