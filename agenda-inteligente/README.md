@@ -4,27 +4,46 @@ MVP acadêmico de agendamento para profissionais de beleza. O profissional confi
 
 ## Requisitos
 
-- Java 27 e acesso à internet na primeira execução do Maven Wrapper;
-- Node.js 26+ e npm;
-- Docker Desktop em execução (para o PostgreSQL).
+- Docker Desktop em execução, para o PostgreSQL 18;
+- JDK 27;
+- Node.js 26 ou compatível e npm;
+- acesso à internet na primeira execução do Maven Wrapper e na instalação das dependências do frontend.
 
-## Como executar
+## Endereços locais e credenciais padrão
 
-1. Inicie o banco:
+| Recurso | Endereço ou credencial |
+|---|---|
+| Frontend | `http://localhost:5173` |
+| API | `http://localhost:8080` |
+| Página pública padrão | `http://localhost:5173/agendar/agenda-inteligente` |
+| PostgreSQL | `localhost:5432` |
+| Banco de dados | `agenda_inteligente` |
+| Usuário do banco | `agenda` |
+| Senha do banco | `agenda` |
+| Usuário da área profissional | `profissional` |
+| Senha da área profissional | `agenda123` |
+
+Antes de consultar horários pela página pública, cadastre ao menos um serviço e uma faixa de disponibilidade na área profissional.
+
+## Inicialização no macOS
+
+Abra três terminais na pasta `agenda-inteligente`.
+
+1. Inicie o PostgreSQL:
 
    ```bash
    cd database
    docker compose up -d
    ```
 
-2. Em outro terminal, inicie a API:
+2. Em outro terminal, inicie o backend:
 
    ```bash
    cd backend
    ./mvnw spring-boot:run
    ```
 
-3. Em outro terminal, inicie o frontend:
+3. Em outro terminal, instale as dependências e inicie o frontend:
 
    ```bash
    cd frontend
@@ -32,9 +51,49 @@ MVP acadêmico de agendamento para profissionais de beleza. O profissional confi
    npm run dev
    ```
 
-4. Acesse `http://localhost:5173`. A senha inicial da área profissional é `agenda123`. Para não expor essa senha em outro ambiente, defina a variável `SENHA_PROFISSIONAL` antes de iniciar a API.
+## Inicialização no Windows
 
-Após cadastrar ao menos um serviço e uma faixa de disponibilidade, copie o link apresentado no painel. O endereço público padrão é `http://localhost:5173/agendar/agenda-inteligente`.
+Abra três terminais na pasta `agenda-inteligente`.
+
+1. Inicie o PostgreSQL:
+
+   ```powershell
+   cd database
+   docker compose up -d
+   ```
+
+2. Em outro terminal, inicie o backend:
+
+   ```powershell
+   cd backend
+   .\mvnw.cmd spring-boot:run
+   ```
+
+3. Em outro terminal, instale as dependências e inicie o frontend:
+
+   ```powershell
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+## Configuração por variáveis de ambiente
+
+Os valores padrão podem ser substituídos pelas seguintes variáveis antes de iniciar a API: `BANCO_URL`, `BANCO_USUARIO`, `BANCO_SENHA`, `PORTA_API`, `USUARIO_PROFISSIONAL`, `SENHA_PROFISSIONAL` e `ORIGEM_FRONTEND`.
+
+No macOS, por exemplo:
+
+```bash
+export SENHA_PROFISSIONAL='nova-senha'
+./mvnw spring-boot:run
+```
+
+No Windows PowerShell, por exemplo:
+
+```powershell
+$env:SENHA_PROFISSIONAL = 'nova-senha'
+.\mvnw.cmd spring-boot:run
+```
 
 ## Estrutura
 
@@ -46,19 +105,30 @@ Após cadastrar ao menos um serviço e uma faixa de disponibilidade, copie o lin
 
 O backend revalida a disponibilidade antes de gravar. Além disso, o PostgreSQL mantém uma restrição de exclusão que impede intervalos sobrepostos para o profissional, inclusive em solicitações simultâneas. Os horários públicos são oferecidos em intervalos de 30 minutos e usam o fuso `America/Sao_Paulo`.
 
-## Testes
+## Testes, lint e build
 
-No backend, execute:
+No backend, execute o teste automatizado:
 
 ```bash
 cd backend
 ./mvnw test
 ```
 
-No frontend, execute:
+No Windows, use:
+
+```powershell
+cd backend
+.\mvnw.cmd test
+```
+
+No frontend, execute o lint e o build de produção:
 
 ```bash
 cd frontend
 npm run lint
 npm run build
 ```
+
+No Windows, os mesmos comandos `npm` podem ser executados no PowerShell após acessar a pasta `frontend`.
+
+O conjunto atual de testes do backend é limitado e não representa cobertura completa de testes automatizados.
